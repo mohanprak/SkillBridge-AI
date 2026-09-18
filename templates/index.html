@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI | Build Your Career</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Skill<span>Bridge</span> AI
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-buttons">
+            <button class="login-btn"
+                    onclick="showMessage('Login module coming next!')">
+                Login
+            </button>
+
+            <a href="/register" class="signup-btn">
+    Get Started
+</a>
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🚀 AI-Powered Career Intelligence
+            </div>
+
+            <h1>
+                Bridge Your
+                <span>Skills</span>
+                to Your Career
+            </h1>
+
+            <p>
+                SkillBridge AI analyzes your skills, resume and
+                career goals to identify skill gaps and create
+                a personalized learning roadmap.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn"
+                        onclick="showMessage('Skill analysis will be available soon!')">
+                    Analyze My Skills →
+                </button>
+
+                <button class="secondary-btn"
+                        onclick="scrollToSection('how-it-works')">
+                    See How It Works
+                </button>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div>
+                    <strong>AI</strong>
+                    <span>Powered Analysis</span>
+                </div>
+
+                <div>
+                    <strong>100+</strong>
+                    <span>Career Skills</span>
+                </div>
+
+                <div>
+                    <strong>90</strong>
+                    <span>Day Roadmaps</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Dashboard Preview -->
+
+        <div class="dashboard-preview">
+
+            <div class="dashboard-header">
+
+                <span>Skill Analysis</span>
+
+                <span class="status">
+                    ● Live
+                </span>
+
+            </div>
+
+            <div class="score-section">
+
+                <div class="score-circle">
+                    <strong>68%</strong>
+                    <span>Match</span>
+                </div>
+
+                <div>
+                    <h3>Data Science</h3>
+
+                    <p>
+                        Your current career readiness
+                    </p>
+
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skills">
+
+                <div class="skill">
+                    <span>Python</span>
+                    <b>85%</b>
+                </div>
+
+                <div class="skill">
+                    <span>SQL</span>
+                    <b>72%</b>
+                </div>
+
+                <div class="skill">
+                    <span>Statistics</span>
+                    <b>48%</b>
+                </div>
+
+                <div class="skill">
+                    <span>Machine Learning</span>
+                    <b>32%</b>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section id="features" class="section">
+
+        <div class="section-heading">
+
+            <span>FEATURES</span>
+
+            <h2>
+                Everything You Need to
+                <span>Grow Your Career</span>
+            </h2>
+
+            <p>
+                One intelligent platform to understand your
+                current skills and plan your next career move.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📄</div>
+
+                <h3>Resume Analyzer</h3>
+
+                <p>
+                    Upload your resume and extract important
+                    skills, education, projects and experience.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🎯</div>
+
+                <h3>Skill Gap Analysis</h3>
+
+                <p>
+                    Compare your current skills with the
+                    requirements of your target career.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🧠</div>
+
+                <h3>AI Recommendations</h3>
+
+                <p>
+                    Receive personalized recommendations based
+                    on your current skills and goals.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🗺️</div>
+
+                <h3>Learning Roadmap</h3>
+
+                <p>
+                    Get a structured roadmap showing what to
+                    learn and in what order.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">💼</div>
+
+                <h3>Job Analyzer</h3>
+
+                <p>
+                    Analyze job descriptions and discover the
+                    skills employers are asking for.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>Progress Dashboard</h3>
+
+                <p>
+                    Track your learning progress and monitor
+                    your skill development over time.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section id="how-it-works" class="section process-section">
+
+        <div class="section-heading">
+
+            <span>HOW IT WORKS</span>
+
+            <h2>
+                From Skills to
+                <span>Career Roadmap</span>
+            </h2>
+
+        </div>
+
+
+        <div class="process-grid">
+
+            <div class="process-card">
+
+                <div class="step-number">01</div>
+
+                <h3>Create Profile</h3>
+
+                <p>
+                    Enter your education, skills, interests
+                    and career goal.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="step-number">02</div>
+
+                <h3>Analyze Skills</h3>
+
+                <p>
+                    Our system analyzes your profile and
+                    identifies your current skill level.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="step-number">03</div>
+
+                <h3>Find Skill Gaps</h3>
+
+                <p>
+                    Compare your profile with target career
+                    requirements.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="step-number">04</div>
+
+                <h3>Build Roadmap</h3>
+
+                <p>
+                    Get a personalized learning plan and
+                    project recommendations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about" class="about-section">
+
+        <div class="about-content">
+
+            <span>ABOUT SKILLBRIDGE AI</span>
+
+            <h2>
+                Turn Your Skills Into
+                <span>Career Direction</span>
+            </h2>
+
+            <p>
+                SkillBridge AI is designed to help students
+                understand what they know, what they are
+                missing and what they should learn next.
+            </p>
+
+            <p>
+                The platform combines web development,
+                databases, data analytics, natural language
+                processing and machine learning.
+            </p>
+
+            <button class="primary-btn"
+                    onclick="showMessage('Your journey starts soon!')">
+                Start Your Journey →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Skill<span>Bridge</span> AI
+        </div>
+
+        <p>
+            AI-powered skill gap analysis and career learning platform.
+        </p>
+
+        <div class="footer-bottom">
+            © 2026 SkillBridge AI. All rights reserved.
+        </div>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
