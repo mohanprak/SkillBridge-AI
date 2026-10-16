@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Roadmap | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+    <header class="dashboard-header">
+
+        <div class="brand">
+            <span class="brand-skill">Skill</span><span class="brand-bridge">Bridge</span>
+            <span class="brand-ai"> AI</span>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">
+            Logout
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+
+            <h1>
+                Personalized Learning Roadmap 🗺️
+            </h1>
+
+            <p>
+                Your learning path is generated from your current
+                skills, target career and identified skill gaps.
+            </p>
+
+        </section>
+
+
+        <!-- TARGET CAREER -->
+
+        <div class="roadmap-summary">
+
+            <div>
+                <span class="summary-label">
+                    Target Career
+                </span>
+
+                <strong>
+                    {{ career_goal or "Not specified" }}
+                </strong>
+            </div>
+
+
+            <div>
+                <span class="summary-label">
+                    Missing Skills
+                </span>
+
+                <strong>
+                    {{ roadmap|length }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        {% if roadmap %}
+
+        <section class="roadmap-container">
+
+            {% for item in roadmap %}
+
+            <div class="roadmap-card">
+
+                <div class="roadmap-number">
+                    {{ loop.index }}
+                </div>
+
+
+                <div class="roadmap-content">
+
+                    <div class="roadmap-header">
+
+                        <h2>
+                            {{ item.skill }}
+                        </h2>
+
+                        <span class="priority-badge
+                            {% if item.priority == 'High' %}
+                                priority-high
+                            {% elif item.priority == 'Medium' %}
+                                priority-medium
+                            {% else %}
+                                priority-low
+                            {% endif %}">
+                            {{ item.priority }} Priority
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        {{ item.description }}
+                    </p>
+
+
+                    <div class="roadmap-details">
+
+                        <div>
+                            <strong>Estimated Time</strong>
+                            <span>
+                                {{ item.duration }}
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong>Learn</strong>
+                            <span>
+                                {{ item.topics }}
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="roadmap-actions">
+
+                        <a href="{{ item.resource }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="learn-btn">
+                            Start Learning →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+
+        {% else %}
+
+        <div class="empty-roadmap">
+
+            <div class="empty-icon">
+                🗺️
+            </div>
+
+            <h2>
+                No Learning Roadmap Available
+            </h2>
+
+            <p>
+                Complete your profile, add your skills and
+                perform Skill Gap Analysis first.
+            </p>
+
+            <a href="{{ url_for('skill_gap') }}"
+               class="card-btn">
+                Analyze Skill Gap
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <br>
+
+        <a href="{{ url_for('dashboard') }}"
+           class="back-link">
+            ← Back to Dashboard
+        </a>
+
+    </main>
+
+</body>
+
+</html>

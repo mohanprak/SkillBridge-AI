@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
 
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql://postgres:0000@localhost:5432/skillbridge_db"
-)
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+SECRET_KEY = os.getenv("SECRET_KEY")

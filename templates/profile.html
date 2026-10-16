@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Skill<span>Bridge</span> AI
+    </div>
+
+    <div class="nav-buttons">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="login-btn">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('logout') }}"
+           class="signup-btn">
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="profile-page">
+
+    <div class="profile-header">
+
+        <p class="dashboard-label">
+            STUDENT PROFILE
+        </p>
+
+        <h1>
+            Build Your Career Profile
+        </h1>
+
+        <p>
+            Tell us about your education, experience and career goals.
+        </p>
+
+    </div>
+
+
+    {% if message %}
+
+    <div class="success-message">
+        {{ message }}
+    </div>
+
+    {% endif %}
+
+
+    {% if error %}
+
+    <div class="error-message">
+        {{ error }}
+    </div>
+
+    {% endif %}
+
+
+    <div class="profile-form-card">
+
+        <form method="POST">
+
+
+            <!-- EDUCATION -->
+
+            <div class="form-group">
+
+                <label>
+                    Education
+                </label>
+
+                <input
+                    type="text"
+                    name="education"
+                    value="{{ profile.education if profile else '' }}"
+                    placeholder="Example: B.Tech"
+                    required
+                >
+
+            </div>
+
+
+            <!-- BRANCH -->
+
+            <div class="form-group">
+
+                <label>
+                    Branch
+                </label>
+
+                <input
+                    type="text"
+                    name="branch"
+                    value="{{ profile.branch if profile else '' }}"
+                    placeholder="Example: Computer Science and Engineering"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SEMESTER -->
+
+            <div class="form-group">
+
+                <label>
+                    Current Semester
+                </label>
+
+                <select name="semester" required>
+
+                    <option value="">
+                        Select Semester
+                    </option>
+
+                    {% for i in range(1, 9) %}
+
+                    <option
+                        value="{{ i }}"
+                        {% if profile and profile.semester == i %}
+                        selected
+                        {% endif %}
+                    >
+
+                        {{ i }} Semester
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- CAREER GOAL -->
+
+            <div class="form-group">
+
+                <label>
+                    Target Career
+                </label>
+
+                <select name="career_goal" required>
+
+                    <option value="">
+                        Select Career
+                    </option>
+
+                    {% set careers = [
+                        "Data Scientist",
+                        "Data Analyst",
+                        "Machine Learning Engineer",
+                        "Software Developer",
+                        "Web Developer",
+                        "AI Engineer",
+                        "Cloud Engineer",
+                        "DevOps Engineer",
+                        "Cybersecurity Analyst",
+                        "Other"
+                    ] %}
+
+                    {% for career in careers %}
+
+                    <option
+                        value="{{ career }}"
+                        {% if profile and profile.career_goal == career %}
+                        selected
+                        {% endif %}
+                    >
+
+                        {{ career }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="form-group">
+
+                <label>
+                    Experience Level
+                </label>
+
+                <select name="experience" required>
+
+                    <option value="">
+                        Select Experience
+                    </option>
+
+                    {% for level in [
+                        "Beginner",
+                        "Intermediate",
+                        "Advanced"
+                    ] %}
+
+                    <option
+                        value="{{ level }}"
+                        {% if profile and profile.experience == level %}
+                        selected
+                        {% endif %}
+                    >
+
+                        {{ level }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-btn save-profile-btn">
+
+                Save Profile
+
+            </button>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

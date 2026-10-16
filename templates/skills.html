@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Skills | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Skill<span>Bridge</span> AI
+    </div>
+
+    <div class="nav-buttons">
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="login-btn">
+
+            Dashboard
+
+        </a>
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="signup-btn">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="skills-page">
+
+    <div class="profile-header">
+
+        <p class="dashboard-label">
+            SKILL PROFILE
+        </p>
+
+        <h1>
+            My Skills
+        </h1>
+
+        <p>
+            Add your current skills and rate your proficiency.
+        </p>
+
+    </div>
+
+
+    {% if error %}
+
+    <div class="error-message">
+        {{ error }}
+    </div>
+
+    {% endif %}
+
+
+    {% if message %}
+
+    <div class="success-message">
+        {{ message }}
+    </div>
+
+    {% endif %}
+
+
+    <div class="skill-form-card">
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label>
+                    Select Skill
+                </label>
+
+                <select
+                    name="skill_id"
+                    required>
+
+                    <option value="">
+                        Select a skill
+                    </option>
+
+                    {% for skill in skills %}
+
+                    <option value="{{ skill[0] }}">
+                        {{ skill[1] }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Skill Level:
+                    <span id="skillLevelValue">
+                        50
+                    </span>%
+                </label>
+
+                <input
+                    type="range"
+                    name="skill_level"
+                    min="0"
+                    max="100"
+                    value="50"
+                    id="skillRange"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-btn">
+
+                Add Skill
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="my-skills-card">
+
+        <h2>
+            Your Current Skills
+        </h2>
+
+
+        {% if student_skills %}
+
+            {% for skill in student_skills %}
+
+            <div class="student-skill">
+
+                <div class="skill-title">
+
+                    <span>
+                        {{ skill[0] }}
+                    </span>
+
+                    <strong>
+                        {{ skill[1] }}%
+                    </strong>
+
+                </div>
+
+                <div class="skill-progress">
+
+                    <div
+                        class="skill-progress-fill"
+                        data-level="{{ skill[1] }}%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="empty-message">
+                You haven't added any skills yet.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</main>
+
+
+<script>
+
+const range =
+    document.getElementById("skillRange");
+
+const value =
+    document.getElementById("skillLevelValue");
+
+
+range.addEventListener(
+    "input",
+    function () {
+
+        value.textContent =
+            this.value;
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

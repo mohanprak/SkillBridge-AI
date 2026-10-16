@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analyzer | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .resume-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .resume-header h1 {
+            color: #1e293b;
+            font-size: 34px;
+        }
+
+        .resume-header p {
+            color: #64748b;
+        }
+
+        .resume-box {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .resume-box h2 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .upload-form input[type="file"] {
+            padding: 15px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .analyze-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .analyze-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-badge {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 9px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .no-skills {
+            color: #64748b;
+        }
+
+        .text-area {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 350px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .flash-message {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="resume-container">
+
+    <a href="{{ url_for('dashboard') }}"
+       class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+
+    <div class="resume-header">
+
+        <h1>📄 Resume Analyzer</h1>
+
+        <p>
+            Upload your resume and SkillBridge AI
+            will detect your technical skills.
+        </p>
+
+    </div>
+
+
+    <!-- FLASH MESSAGE -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="flash-message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- UPLOAD -->
+
+    <div class="resume-box">
+
+        <h2>Upload Your Resume</h2>
+
+        <form
+            action="{{ url_for('resume') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="upload-form"
+        >
+
+            <input
+                type="file"
+                name="resume"
+                accept=".pdf"
+                required
+            >
+
+            <button
+                type="submit"
+                class="analyze-btn"
+            >
+                Analyze Resume
+            </button>
+
+        </form>
+
+        <p>
+            Maximum file size: 5 MB
+        </p>
+
+    </div>
+
+
+    {% if detected_skills is defined %}
+
+    <!-- DETECTED SKILLS -->
+
+    <div class="resume-box">
+
+        <h2>🎯 Detected Skills</h2>
+
+        {% if detected_skills %}
+
+            <div class="skills-container">
+
+                {% for skill in detected_skills %}
+
+                    <span class="skill-badge">
+                        {{ skill }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <p class="no-skills">
+                No skills from your SkillBridge database
+                were detected in this resume.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- EXTRACTED TEXT -->
+
+    <div class="resume-box">
+
+        <h2>📑 Extracted Resume Text</h2>
+
+        <div class="text-area">
+            {{ extracted_text }}
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+</body>
+
+</html>

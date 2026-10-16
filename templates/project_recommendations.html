@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project Recommendations | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="page-header">
+
+        <div>
+            <h1>💡 Project Recommendations</h1>
+
+            <p>
+                Personalized projects based on your career goal,
+                skills and skill gaps.
+            </p>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}"
+           class="btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    {% if projects %}
+
+    <div class="project-grid">
+
+        {% for project in projects %}
+
+        <div class="project-card">
+
+            <div class="project-icon">
+                💡
+            </div>
+
+            <h2>
+                {{ project.project_name }}
+            </h2>
+
+            <p class="project-description">
+                {{ project.description }}
+            </p>
+
+
+            <div class="project-info">
+
+                <p>
+                    <strong>Difficulty:</strong>
+                    <span class="difficulty">
+                        {{ project.difficulty }}
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Career Domain:</strong>
+                    {{ project.career_domain }}
+                </p>
+
+            </div>
+
+
+            <div class="project-section">
+
+                <h3>Required Skills</h3>
+
+                <div class="skills-list">
+
+                    {% for skill in project.required_skills.split(',') %}
+
+                    <span class="skill-tag">
+                        {{ skill.strip() }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <div class="project-section">
+
+                <h3>Technologies</h3>
+
+                <p>
+                    {{ project.technologies }}
+                </p>
+
+            </div>
+
+
+            {% if project.project_url %}
+
+            <a href="{{ project.project_url }}"
+               target="_blank"
+               class="project-button">
+
+                Learn Technology →
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <h2>No projects found</h2>
+
+        <p>
+            Complete your profile and skill information
+            to receive project recommendations.
+        </p>
+
+        <a href="{{ url_for('profile') }}"
+           class="btn">
+
+            Complete Profile
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

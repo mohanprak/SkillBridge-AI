@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Job Analyzer | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .job-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .job-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .job-header h1 {
+            font-size: 34px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .job-header p {
+            color: #64748b;
+        }
+
+        .job-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .job-card h2 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            min-height: 250px;
+            resize: vertical;
+        }
+
+        .analyze-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .analyze-button:hover {
+            background: #1d4ed8;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-badge {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .no-skills {
+            color: #64748b;
+        }
+
+        .description-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .flash-message {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="job-container">
+
+    <a href="{{ url_for('dashboard') }}"
+       class="back-link">
+        ← Back to Dashboard
+    </a>
+
+
+    <div class="job-header">
+
+        <h1>🎯 Job Description Analyzer</h1>
+
+        <p>
+            Paste a job description and SkillBridge AI
+            will identify the required technical skills.
+        </p>
+
+    </div>
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="flash-message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- JOB FORM -->
+
+    <div class="job-card">
+
+        <h2>Enter Job Information</h2>
+
+        <form
+            method="POST"
+            action="{{ url_for('job_analyzer') }}"
+        >
+
+            <div class="form-group">
+
+                <label for="job_title">
+                    Job Title
+                </label>
+
+                <input
+                    type="text"
+                    id="job_title"
+                    name="job_title"
+                    placeholder="Example: Data Scientist"
+                    value="{{ job_title|default('') }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="description">
+                    Job Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Paste the complete job description here..."
+                    required
+                >{{ description|default('') }}</textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="analyze-button"
+            >
+                Analyze Job Description
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if detected_skills is defined %}
+
+    <!-- RESULTS -->
+
+    <div class="job-card">
+
+        <h2>
+            🔍 Required Skills
+        </h2>
+
+
+        {% if detected_skills %}
+
+            <div class="skills-container">
+
+                {% for skill in detected_skills %}
+
+                    <span class="skill-badge">
+                        {{ skill }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <p class="no-skills">
+                No matching skills were found in the
+                SkillBridge skill database.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- JOB DESCRIPTION -->
+
+    <div class="job-card">
+
+        <h2>
+            📋 Analyzed Job Description
+        </h2>
+
+        <div class="description-box">
+            {{ description }}
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+</body>
+
+</html>

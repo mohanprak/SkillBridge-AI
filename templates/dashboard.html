@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="sb-dashboard">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="sb-header">
+
+        <div class="sb-brand">
+
+            <h1>
+                Skill<span>Bridge</span> AI
+            </h1>
+
+            <p>
+                Student Career Platform
+            </p>
+
+        </div>
+
+
+        <div class="sb-user">
+
+            <span>
+                Welcome,
+                <strong>
+                    {{ session.get('user_name', 'Student') }}
+                </strong>
+            </span>
+
+            <a href="{{ url_for('logout') }}"
+               class="sb-logout">
+                Logout
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <section class="sb-welcome">
+
+        <h2>
+            Welcome to SkillBridge AI 👋
+        </h2>
+
+        <p>
+            Build your skills, identify skill gaps,
+            follow your learning roadmap and prepare
+            for your target career.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= DASHBOARD CARDS ================= -->
+
+    <section class="sb-grid">
+
+
+        <!-- PROFILE -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                👤
+            </div>
+
+            <h3>
+                My Profile
+            </h3>
+
+            <p>
+                Manage your education, branch,
+                semester and career goal.
+            </p>
+
+            <a href="{{ url_for('profile') }}"
+               class="sb-button">
+                Complete Profile
+            </a>
+
+        </div>
+
+
+
+        <!-- SKILLS -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                🧠
+            </div>
+
+            <h3>
+                My Skills
+            </h3>
+
+            <p>
+                Add your technical skills and
+                update your proficiency level.
+            </p>
+
+            <a href="{{ url_for('skills') }}"
+               class="sb-button">
+                Manage Skills
+            </a>
+
+        </div>
+
+
+
+        <!-- RESUME -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                📄
+            </div>
+
+            <h3>
+                Resume Analyze
+            </h3>
+
+            <p>
+                Upload your resume and identify
+                your existing skills.
+            </p>
+
+            <a href="{{ url_for('resume') }}"
+               class="sb-button">
+                Analyze Resume
+            </a>
+
+        </div>
+
+
+
+        <!-- JOB ANALYZER -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                🎯
+            </div>
+
+            <h3>
+                Job Analyzer
+            </h3>
+
+            <p>
+                Analyze job requirements and
+                understand required skills.
+            </p>
+
+            <a href="{{ url_for('job_analyzer') }}"
+               class="sb-button">
+                Analyze Job
+            </a>
+
+        </div>
+
+
+
+        <!-- SKILL GAP -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                🔍
+            </div>
+
+            <h3>
+                Skill Gap Analysis
+            </h3>
+
+            <p>
+                Compare your skills with your
+                target career requirements.
+            </p>
+
+            <a href="{{ url_for('skill_gap') }}"
+               class="sb-button">
+                Analyze Skill Gap
+            </a>
+
+        </div>
+
+
+
+        <!-- ROADMAP -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Learning Roadmap
+            </h3>
+
+            <p>
+                Follow a personalized learning
+                roadmap based on your career goal.
+            </p>
+
+            <a href="{{ url_for('learning_roadmap') }}"
+               class="sb-button">
+                View Roadmap
+            </a>
+
+        </div>
+
+
+
+        <!-- PROJECTS -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                💡
+            </div>
+
+            <h3>
+                Project Recommendations
+            </h3>
+
+            <p>
+                Get project ideas based on
+                your skills and career goal.
+            </p>
+
+            <a href="{{ url_for('project_recommendations') }}"
+               class="sb-button">
+                View Projects
+            </a>
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="sb-card">
+
+            <div class="sb-card-icon">
+                📈
+            </div>
+
+            <h3>
+                Progress Tracking
+            </h3>
+
+            <p>
+                Track your learning progress
+                and completed roadmap tasks.
+            </p>
+
+            <a href="{{ url_for('progress') }}"
+               class="sb-button">
+                View Progress
+            </a>
+
+        </div>
+
+
+
+        <!-- AI DASHBOARD -->
+
+        <div class="sb-card sb-ai-card">
+
+            <div class="sb-card-icon">
+                🤖
+            </div>
+
+            <h3>
+                AI Dashboard
+            </h3>
+
+            <p>
+                View your skill score, career
+                readiness and learning analytics.
+            </p>
+
+            <a href="{{ url_for('ai_dashboard') }}"
+               class="sb-button">
+               
+                Open AI Dashboard
+            </a>
+
+        </div>
+        <div class="dashboard-card">
+    {% if session.get('user_role') == 'admin' %}
+    <div class="card-icon">
+        🛠️
+    </div>
+
+    <h3>
+        Admin Dashboard
+    </h3>
+
+    <p>
+        View platform statistics and manage the system.
+    </p>
+
+    <a href="{{ url_for('admin_dashboard') }}"
+       class="primary-btn">
+
+        Open Admin Dashboard
+
+    </a>
+
+</div>
+{% endif %}
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="sb-footer">
+
+        <p>
+            © 2026 SkillBridge AI |
+            AI-Powered Career & Skill Development Platform
+        </p>
+
+    </footer>
+
+
+</div>
+
+</body>
+
+</html>

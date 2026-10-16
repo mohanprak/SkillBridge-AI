@@ -31,10 +31,9 @@
         </nav>
 
         <div class="nav-buttons">
-            <button class="login-btn"
-                    onclick="showMessage('Login module coming next!')">
-                Login
-            </button>
+            <a href="/login" class="login-btn">
+    Login
+</a>
 
             <a href="/register" class="signup-btn">
     Get Started
@@ -68,10 +67,9 @@
 
             <div class="hero-buttons">
 
-                <button class="primary-btn"
-                        onclick="showMessage('Skill analysis will be available soon!')">
-                    Analyze My Skills →
-                </button>
+                <a href="{{ url_for('skill_gap') }}" class="primary-btn">
+                  Analyze My Skills →
+                </a>
 
                 <button class="secondary-btn"
                         onclick="scrollToSection('how-it-works')">
@@ -381,11 +379,9 @@
                 processing and machine learning.
             </p>
 
-            <button class="primary-btn"
-                    onclick="showMessage('Your journey starts soon!')">
-                Start Your Journey →
-            </button>
-
+            <a href="{{ url_for('register') }}" class="primary-btn">
+             Start Your Journey →
+            </a>
         </div>
 
     </section>

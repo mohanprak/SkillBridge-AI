@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Progress | SkillBridge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .progress-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .progress-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .progress-header h1 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .progress-header p {
+            color: #666;
+        }
+
+        .progress-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .overall-number {
+            font-size: 42px;
+            font-weight: bold;
+            color: #1565c0;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 18px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #1565c0;
+            border-radius: 20px;
+        }
+
+        .overall-fill {
+            width: 54%;
+        }
+
+        .python-fill {
+            width: 70%;
+        }
+
+        .sql-fill {
+            width: 60%;
+        }
+
+        .data-fill {
+            width: 50%;
+        }
+
+        .ml-fill {
+            width: 35%;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
+            gap: 20px;
+        }
+
+        .progress-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .progress-card h3 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .progress-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .progress-details {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #1565c0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="progress-page">
+
+
+        <!-- HEADER -->
+
+        <div class="progress-header">
+
+            <h1>
+                My Learning Progress
+            </h1>
+
+            <p>
+                Track your learning progress and improve your skills.
+            </p>
+
+        </div>
+
+
+        <!-- OVERALL PROGRESS -->
+
+        <div class="progress-summary">
+
+            <h2>
+                Overall Progress
+            </h2>
+
+            <div class="overall-number">
+
+                {{ overall_progress|default(54)|int }}%
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div class="progress-fill overall-fill"></div>
+
+            </div>
+
+
+            <p>
+                Keep learning and improve your skills step by step.
+            </p>
+
+        </div>
+
+
+        <!-- SKILLS -->
+
+        <div class="progress-grid">
+
+
+            <!-- PYTHON -->
+
+            <div class="progress-card">
+
+                <h3>
+                    Python
+                </h3>
+
+                <p>
+                    Python programming and problem solving.
+                </p>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill python-fill"></div>
+
+                </div>
+
+                <div class="progress-details">
+
+                    <strong>70%</strong>
+
+                    completed
+
+                </div>
+
+            </div>
+
+
+            <!-- SQL -->
+
+            <div class="progress-card">
+
+                <h3>
+                    SQL
+                </h3>
+
+                <p>
+                    Database management and SQL practice.
+                </p>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill sql-fill"></div>
+
+                </div>
+
+                <div class="progress-details">
+
+                    <strong>60%</strong>
+
+                    completed
+
+                </div>
+
+            </div>
+
+
+            <!-- DATA ANALYSIS -->
+
+            <div class="progress-card">
+
+                <h3>
+                    Data Analysis
+                </h3>
+
+                <p>
+                    Pandas, NumPy and data analysis.
+                </p>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill data-fill"></div>
+
+                </div>
+
+                <div class="progress-details">
+
+                    <strong>50%</strong>
+
+                    completed
+
+                </div>
+
+            </div>
+
+
+            <!-- MACHINE LEARNING -->
+
+            <div class="progress-card">
+
+                <h3>
+                    Machine Learning
+                </h3>
+
+                <p>
+                    Machine learning fundamentals and models.
+                </p>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill ml-fill"></div>
+
+                </div>
+
+                <div class="progress-details">
+
+                    <strong>35%</strong>
+
+                    completed
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-link">
+
+            ← Back to Dashboard
+
+        </a>
+
+
+    </div>
+
+</body>
+
+</html>
